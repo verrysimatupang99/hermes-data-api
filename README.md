@@ -5,9 +5,13 @@ API **read-only** untuk semua data Crypto & Forex di sistem Hermes.
 Tidak ada endpoint yang menulis, mengubah, atau mengeksekusi order. Semua
 fungsi hanya membaca dari sumber yang sudah dipakai pipeline live.
 
-- Base URL lokal: `http://127.0.0.1:8790`
+- Base URL lokal: `http://127.0.0.1:8790` (dari server)
+- Base URL remote: `http://100.126.10.74:8790` (lewat Tailscale)
 - Dokumentasi interaktif: `/docs` (Swagger UI)
 - OpenAPI schema: `/openapi.json`
+
+> API ini **hanya** mendengar di interface Tailscale. Tidak terbuka ke
+> internet publik. Cara akses dari laptop: lihat [REMOTE_ACCESS.md](REMOTE_ACCESS.md).
 
 ## Quick start
 
