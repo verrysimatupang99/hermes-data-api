@@ -1,0 +1,15 @@
+[Unit]
+Description=Hermes Data API (read-only crypto & forex)
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/hermes-data-api
+ExecStart=/home/ubuntu/hermes-agent/venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8790
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
