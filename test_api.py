@@ -11,10 +11,11 @@ import urllib.request
 BASE = sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:8790"
 
 CASES = [
-    # (path, harapan_status)
+    # --- meta
     ("/", 200),
     ("/health", 200),
     ("/cache", 200),
+    # --- crypto
     ("/crypto/universe", 200),
     ("/crypto/universe/BTCUSDT", 200),
     ("/crypto/plays", 200),
@@ -26,15 +27,42 @@ CASES = [
     ("/crypto/news?days_ahead=3", 200),
     ("/crypto/equity", 200),
     ("/crypto/levels?symbol=AVAXUSDT&play=scalping", 200),
+    # --- forex OHLC
     ("/forex/instruments", 200),
     ("/forex/plays", 200),
     ("/forex/dxy", 200),
     ("/forex/klines?symbol=XAUUSD&interval=60&limit=20", 200),
     ("/forex/levels?symbol=XAUUSD&play=scalping", 200),
-    # error handling
+    # --- forex journal
+    ("/forex/journal/stats", 200),
+    ("/forex/journal/trades?limit=5", 200),
+    ("/forex/journal/watchlist", 200),
+    ("/forex/journal/edge", 200),
+    ("/forex/journal/scanlog", 200),
+    ("/forex/journal/performance", 200),
+    ("/forex/journal/session", 200),
+    ("/forex/journal/multipair", 200),
+    ("/forex/journal/charts?limit=2", 200),
+    # --- idx
+    ("/idx/stats", 200),
+    ("/idx/signals?limit=5", 200),
+    ("/idx/market?limit=5", 200),
+    ("/idx/scanners", 200),
+    ("/idx/news", 200),
+    ("/idx/official", 200),
+    ("/idx/feed?limit=5", 200),
+    ("/idx/equity", 200),
+    ("/idx/ledger", 200),
+    ("/idx/flow?ticker=BBRI&days=7", 200),
+    # --- cron
+    ("/cron/jobs", 200),
+    ("/cron/summary", 200),
+    ("/cron/executions?limit=5", 200),
+    # --- error handling
     ("/forex/klines?symbol=EURUSD", 404),
     ("/crypto/levels?symbol=BTCUSDT&play=swing", 400),
     ("/crypto/universe/FOOUSDT", 404),
+    ("/cron/jobs/tidak-ada-job-ini", 404),
 ]
 
 
@@ -61,7 +89,7 @@ def main():
         mark = "OK  " if good else "FAIL"
         extra = ""
         if isinstance(body, dict):
-            for k in ("count", "status", "detail", "mode"):
+            for k in ("count", "status", "detail", "mode", "total", "enabled"):
                 if k in body:
                     extra = f" {k}={body[k]}"
                     break

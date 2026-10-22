@@ -1,9 +1,11 @@
 # Hermes Data API
 
-API **read-only** untuk semua data Crypto & Forex di sistem Hermes.
+API **read-only** untuk semua data **Crypto, Forex, IDX (saham), dan Cronjob**
+di sistem Hermes.
 
 Tidak ada endpoint yang menulis, mengubah, atau mengeksekusi order. Semua
-fungsi hanya membaca dari sumber yang sudah dipakai pipeline live.
+fungsi hanya membaca dari sumber yang sudah dipakai pipeline live, dan semua
+akses database memakai mode `read-only`.
 
 - Base URL lokal: `http://127.0.0.1:8790` (dari server)
 - Base URL remote: `http://100.126.10.74:8790` (lewat Tailscale)
